@@ -4,6 +4,7 @@
   <title>FriendCircle</title>
 </head>
 <body>
+<%= render partial: "layouts/errors" %>
 <% if current_user %>
   <%= button_to "Log out", session_url, method: :delete %>
 <% else %>

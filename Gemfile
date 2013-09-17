@@ -11,6 +11,7 @@ group :development do
   gem 'better_errors'
   gem 'binding_of_caller'
   gem 'letter_opener'
+  gem 'launchy'
 end
 
 gem 'bcrypt-ruby', require: 'bcrypt'
@@ -39,4 +40,4 @@ gem 'jquery-rails'
 # gem 'capistrano'
 
 # To use debugger
-# gem 'debugger'
+gem 'debugger'

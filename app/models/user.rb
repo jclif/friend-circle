@@ -1,15 +1,17 @@
 class User < ActiveRecord::Base
   attr_accessible :email, :password
+  attr_reader :password
 
   validates :email, presence: true, uniqueness: true
   validates :password_digest, presence: {message: "Password can't be blank"}
+  validates :password, length: {minimum: 6, allow_nil: true}
 
   before_validation :ensure_session_token
 
   def self.find_by_credentials(email, password)
     @user = User.find_by_email(email)
 
-    return @user if @user.is_password?(password)
+    return @user if !@user.nil? && @user.is_password?(password)
   end
 
   def self.generate_session_token
@@ -22,6 +24,7 @@ class User < ActiveRecord::Base
   end
 
   def password=(password)
+    @password = password
     self.password_digest = BCrypt::Password.create(password)
   end
 
@@ -29,6 +32,11 @@ class User < ActiveRecord::Base
     BCrypt::Password.new(self.password_digest).is_password?(password)
   end
 
+  def reset_password
+    pwd = SecureRandom::urlsafe_base64(6)
+    self.password = pwd
+    pwd
+  end
 
   private
 

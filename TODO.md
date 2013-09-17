@@ -1,0 +1,2 @@
+-unique pairs for friend elipses
+-something else

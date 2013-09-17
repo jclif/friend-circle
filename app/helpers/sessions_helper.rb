@@ -13,8 +13,7 @@ module SessionsHelper
     user = User.find_by_credentials(
       params[:user][:email],
       params[:user][:password]
-      )
-
+    )
     if user.nil?
       flash[:errors] = ["Credentials were wrong"]
     else
