@@ -5,8 +5,15 @@ gem 'rails', '3.2.12'
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
-gem 'sqlite3'
+gem 'pg'
 
+group :development do
+  gem 'better_errors'
+  gem 'binding_of_caller'
+  gem 'letter_opener'
+end
+
+gem 'bcrypt-ruby', require: 'bcrypt'
 
 # Gems used only for assets and not required
 # in production environments by default.
@@ -21,9 +28,6 @@ group :assets do
 end
 
 gem 'jquery-rails'
-
-# To use ActiveModel has_secure_password
-# gem 'bcrypt-ruby', '~> 3.0.0'
 
 # To use Jbuilder templates for JSON
 # gem 'jbuilder'
