@@ -2,7 +2,7 @@ class FriendElipseMembership < ActiveRecord::Base
 
   attr_accessible :elipse_id, :victim_id
 
-  validates_uniqueness_of :elipse_id, :victim_id
+  validates_uniqueness_of :elipse_id, scope: :victim_id
 
   belongs_to(
     :elipse,

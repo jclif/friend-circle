@@ -1,0 +1,24 @@
+<form action="<%= friend_elipses_url %>" method="post">
+  <label>Name
+    <input type="text" name="friend_elipse[name]">
+  </label>
+
+  <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+  <input type="hidden" name="friend_elipse[stalker_id]" value="<%= current_user.id %>">
+
+  <% User.all.each do |user| %>
+    <% next if user.id == current_user.id %>
+    <% html_id = "friend_elipse_member_ids_#{user.id}" %>
+    <input
+      type="checkbox"
+      name="friend_elipse[member_ids][]"
+      value="<%= user.id %>"
+      id="<%= html_id %>">
+    <label for="<%= html_id %>">
+      <%= user.email %>
+      <%#= /(.*)@/.match(user.email).captures[0] %>
+    </label>
+  <% end %>
+
+  <input type="submit">
+</form>

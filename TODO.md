@@ -1,2 +1,2 @@
--unique pairs for friend elipses
--something else
+-create landing page
+-edit user action (password)

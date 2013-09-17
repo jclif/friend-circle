@@ -15,6 +15,12 @@ class User < ActiveRecord::Base
     primary_key: :id
   )
 
+  has_many :posts,
+  class_name: "Post",
+  foreign_key: :user_id,
+  primary_key: :id
+
+
   has_many :memberships, through: :friend_elipses, source: :memberships
   has_many :victims, through: :memberships, source: :victim
 

@@ -5,8 +5,18 @@ class SessionsController < ApplicationController
   end
 
   def create
-    login_user!
-    render :new
+    user = User.find_by_credentials(
+      params[:user][:email],
+      params[:user][:password]
+    )
+    if user.nil?
+      flash[:errors] = ["Credentials were wrong"]
+      render :new
+    else
+      user.reset_session_token!
+      self.current_user = user
+      redirect_to user_url(user)
+    end
   end
 
   def destroy

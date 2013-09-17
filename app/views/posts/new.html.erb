@@ -1,0 +1,23 @@
+<form action="<%= posts_url %>" method="post">
+
+  <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+  <input type="hidden" name="post[user_id]" value="<%= current_user.id %>">
+
+  <% current_user.friend_elipses.each do |elipse| %>
+    <% html_id = "friend_elipse_ids_#{elipse.id}" %>
+    <input
+      type="checkbox"
+      name="post[elipse_ids][]"
+      value="<%= elipse.id %>"
+      id="<%= html_id %>">
+    <label for="<%= html_id %>">
+      <%= elipse.name %>
+    </label>
+  <% end %>
+
+  <label>Body
+    <input type="text" name="post[body]">
+  </label>
+
+  <input type="submit">
+</form>

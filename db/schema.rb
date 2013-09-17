@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130917190018) do
+ActiveRecord::Schema.define(:version => 20130917213521) do
 
   create_table "friend_elipse_memberships", :force => true do |t|
     t.integer  "elipse_id",  :null => false
@@ -28,6 +28,27 @@ ActiveRecord::Schema.define(:version => 20130917190018) do
   end
 
   add_index "friend_elipses", ["stalker_id"], :name => "index_friend_elipses_on_stalker_id"
+
+  create_table "post_shares", :force => true do |t|
+    t.integer  "post_id"
+    t.integer  "friend_elipse_id"
+    t.datetime "created_at",       :null => false
+    t.datetime "updated_at",       :null => false
+  end
+
+  create_table "posts", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "body"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "postshares", :force => true do |t|
+    t.integer  "post_id"
+    t.integer  "friend_elipse_id"
+    t.datetime "created_at",       :null => false
+    t.datetime "updated_at",       :null => false
+  end
 
   create_table "users", :force => true do |t|
     t.string   "email",           :null => false
