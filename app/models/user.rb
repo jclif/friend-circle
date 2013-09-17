@@ -8,6 +8,16 @@ class User < ActiveRecord::Base
 
   before_validation :ensure_session_token
 
+  has_many(
+    :friend_elipses,
+    class_name: "FriendElipse",
+    foreign_key: :stalker_id,
+    primary_key: :id
+  )
+
+  has_many :memberships, through: :friend_elipses, source: :memberships
+  has_many :victims, through: :memberships, source: :victim
+
   def self.find_by_credentials(email, password)
     @user = User.find_by_email(email)
 
